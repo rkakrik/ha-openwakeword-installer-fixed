@@ -7,7 +7,7 @@ from .const import CONF_REPOSITORY_URL, CONF_FOLDER_PATH
 
 _LOGGER = logging.getLogger(__name__)
 
-def update_wakewords(repository_url, folder='', base_directory='/share/openwakeword'):
+def update_wakewords(repository_url, folder='', base_directory='openwakeword'):
     """Update wakewords from the given repository URL."""
     try:
         repo_name = os.path.basename(repository_url.rstrip('/'))
