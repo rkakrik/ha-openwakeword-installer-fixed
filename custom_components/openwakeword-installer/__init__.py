@@ -16,7 +16,7 @@ _LOGGER = logging.getLogger(__name__)
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     """Set up the Wakeword Installer component."""
-    await hass.async_add_executor_job(create_directory, '/share/openwakeword')
+    await hass.async_add_executor_job(create_directory, 'openwakeword')
 
     async def handle_update_wakewords_service(call: ServiceCall):
         repositories = call.data.get(CONF_REPOSITORIES, [])
@@ -59,7 +59,7 @@ async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     for repository in entry.data.get(CONF_REPOSITORIES, []):
         repo_name = os.path.basename(repository[CONF_REPOSITORY_URL].rstrip('/'))
-        repository_dir = os.path.join('/share/openwakeword', repo_name)
+        repository_dir = os.path.join('openwakeword', repo_name)
         await hass.async_add_executor_job(delete_directory, repository_dir)
 
     return True
